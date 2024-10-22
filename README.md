@@ -209,3 +209,5 @@ id_artista (FK)
 id_musica (FK)
 Descrição:
  Tabela de relacionamento entre artistas e músicas. Um artista pode interpretar várias músicas, e uma música pode ser interpretada por vários artistas.
+ ![image](https://github.com/user-attachments/assets/2e1bc17b-d04e-4dcc-acd9-a135060acf1f)
+ (é uma imagem gerada mas eu achei que ficou bonito)
