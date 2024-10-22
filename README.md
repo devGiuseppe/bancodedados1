@@ -51,3 +51,29 @@ Atributos:
 id_artista (chave estrangeira)
 id_musica (chave estrangeira)
 Esta entidade relaciona muitos artistas com muitas músicas.
+Relacionamentos:
+Disco → Música (1
+)
+
+Um disco contém várias músicas, mas uma música pertence a um único disco.
+Chave estrangeira: id_disco em Música.
+Artista → Disco (1
+)
+
+Um artista pode lançar vários discos, mas um disco pertence a um único artista.
+Chave estrangeira: id_artista em Disco.
+Artista → Música (N
+)
+
+Um artista pode interpretar várias músicas, e uma música pode ser interpretada por vários artistas.
+Entidade associativa: Artista_Musica com chaves estrangeiras id_artista e id_musica.
+Usuário → Playlist (1
+)
+
+Um usuário pode criar várias playlists, mas cada playlist pertence a um único usuário.
+Chave estrangeira: id_usuario em Playlist.
+Playlist → Música (N
+)
+
+Uma playlist pode conter várias músicas, e uma música pode aparecer em várias playlists.
+Entidade associativa: Música_Playlist com chaves estrangeiras id_playlist e id_musica.
