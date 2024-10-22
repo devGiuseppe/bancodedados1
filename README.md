@@ -116,8 +116,12 @@ Usuário ↔ Playlist (1
 )
 Playlist ↔ Música (N
 via Música_Playlist)
+
+
 Tabelas Relacionais na 3FN:
+
 1. Tabela Musica
+
 Atributos:
 id_musica (PK)
 titulo
