@@ -1,0 +1,106 @@
+Queries das perguntas algebra relacional
+1 SELECT titulo, duracao FROM Musica;
+2 SELECT a.nome
+FROM Artista a
+JOIN Artista_Musica am ON a.id = am.artista_id
+GROUP BY a.nome
+HAVING COUNT(am.musica_id) > 5;
+3 SELECT titulo FROM Disco WHERE data_lancamento > '2020-12-31';
+4 SELECT m.titulo, a.nome 
+FROM Musica m
+JOIN Artista_Musica am ON m.id = am.musica_id
+JOIN Artista a ON am.artista_id = a.id
+ORDER BY m.titulo;
+5 SELECT p.titulo 
+FROM Playlist p
+JOIN Musica_Playlist mp ON p.id = mp.playlist_id
+JOIN Musica m ON mp.musica_id = m.id
+WHERE m.titulo = 'Imagine';
+6 SELECT u.nome 
+FROM Usuario u
+JOIN Playlist p ON u.id = p.usuario_id
+JOIN Musica_Playlist mp ON p.id = mp.playlist_id
+JOIN Musica m ON mp.musica_id = m.id
+JOIN Disco d ON m.disco_id = d.id
+WHERE d.titulo = 'Abbey Road';
+7 SELECT AVG(m.duracao) 
+FROM Musica m
+JOIN Artista_Musica am ON m.id = am.musica_id
+JOIN Artista a ON am.artista_id = a.id
+WHERE a.nome ='Ozzy ';
+8 SELECT nome 
+FROM Artista a
+WHERE NOT EXISTS (
+  SELECT 1 FROM Artista_Musica am WHERE am.artista_id = a.id
+);
+9 SELECT d.titulo 
+FROM Disco d
+JOIN Musica m ON d.id = m.disco_id
+GROUP BY d.titulo
+HAVING COUNT(m.id) > 10;
+10 SELECT DISTINCT a.nome
+FROM Artista a
+JOIN Disco d ON a.id = d.artista_id
+JOIN Musica m ON d.id = m.disco_id
+JOIN Musica_Playlist mp ON m.id = mp.musica_id
+JOIN Playlist p ON mp.playlist_id = p.id
+WHERE d.data_lancamento < '2010-01-01' AND p.titulo = 'Top 50';
+11 SELECT m.titulo 
+FROM Musica m
+JOIN Artista_Musica am ON m.id = am.musica_id
+GROUP BY m.titulo
+HAVING COUNT(am.artista_id) > 1;
+12 SELECT m.titulo 
+FROM Musica m
+JOIN Musica_Playlist mp ON m.id = mp.musica_id
+GROUP BY m.titulo
+HAVING COUNT(mp.playlist_id) > 1;
+13 SELECT u.nome 
+FROM Usuario u
+JOIN Playlist p ON u.id = p.usuario_id
+JOIN Musica_Playlist mp ON p.id = mp.playlist_id
+JOIN Musica m ON mp.musica_id = m.id
+WHERE m.titulo = 'Bohemian Rhapsody';
+14 SELECT m.titulo 
+FROM Musica m
+JOIN Disco d ON m.disco_id = d.id
+WHERE d.titulo = 'Dark Side of the Moon'
+ORDER BY m.duracao DESC
+LIMIT 1;
+15 SELECT titulo 
+FROM Disco 
+WHERE artista_id = (SELECT id FROM Artista WHERE nome = 'Mike Shinoda') 
+AND YEAR(data_lancamento) = 2023;
+16 SELECT DISTINCT a.nome
+FROM Artista a
+JOIN Artista_Musica am ON a.id = am.artista_id
+JOIN Musica m ON am.musica_id = m.id
+JOIN Musica_Playlist mp ON m.id = mp.musica_id
+JOIN Playlist p ON mp.playlist_id = p.id
+JOIN Usuario u ON p.usuario_id = u.id
+WHERE u.nome = 'Giuseppe';
+17 SELECT m.titulo 
+FROM Musica m
+WHERE NOT EXISTS (
+  SELECT 1 FROM Musica_Playlist mp WHERE mp.musica_id = m.id
+);
+18 SELECT m.titulo, a.nome
+FROM Musica m
+JOIN Artista_Musica am ON m.id = am.musica_id
+JOIN Artista a ON am.artista_id = a.id
+JOIN Musica_Playlist mp ON m.id = mp.musica_id
+GROUP BY m.titulo, a.nome
+HAVING COUNT(mp.playlist_id) > 3;
+19 SELECT DISTINCT d.titulo
+FROM Disco d
+JOIN Musica m ON d.id = m.disco_id
+JOIN Artista_Musica am ON m.id = am.musica_id
+JOIN Artista a ON am.artista_id = a.id
+WHERE (SELECT COUNT(*) FROM Disco WHERE artista_id = a.id) >= 2;
+20 SELECT u.nome, p.titulo 
+FROM Usuario u
+JOIN Playlist p ON u.id = p.usuario_id
+JOIN Musica_Playlist mp ON p.id = mp.playlist_id
+GROUP BY u.nome, p.titulo
+HAVING COUNT(mp.musica_id) >= 5;
+
