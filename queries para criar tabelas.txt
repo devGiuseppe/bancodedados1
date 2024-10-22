@@ -1,0 +1,39 @@
+Queries para criar tabelas:
+CREATE TABLE Musica (
+    id_musica SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    duracao INT NOT NULL,
+    id_disco INT NOT NULL,
+    FOREIGN KEY (id_disco) REFERENCES Disco(id_disco)
+);
+CREATE TABLE Artista (
+    id_artista SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_nascimento DATE NOT NULL
+);
+CREATE TABLE Disco (
+    id_disco SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    data_lancamento DATE NOT NULL,
+    id_artista INT NOT NULL,
+    FOREIGN KEY (id_artista) REFERENCES Artista(id_artista)
+);
+CREATE TABLE Usuario (
+    id_usuario SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    data_registro DATE NOT NULL
+);
+CREATE TABLE Playlist (
+    id_playlist SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+CREATE TABLE Artista_Musica (
+    id_artista INT NOT NULL,
+    id_musica INT NOT NULL,
+    PRIMARY KEY (id_artista, id_musica),
+    FOREIGN KEY (id_artista) REFERENCES Artista(id_artista),
+    FOREIGN KEY (id_musica) REFERENCES Musica(id_musica)
+);
