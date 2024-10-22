@@ -52,6 +52,8 @@ id_artista (chave estrangeira)
 id_musica (chave estrangeira)
 Esta entidade relaciona muitos artistas com muitas músicas.
 Relacionamentos:
+
+
 Disco → Música (1
 )
 
