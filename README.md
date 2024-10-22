@@ -82,6 +82,7 @@ Uma playlist pode conter várias músicas, e uma música pode aparecer em vária
 Entidade associativa: Música_Playlist com chaves estrangeiras id_playlist e id_musica.
 
 Modelo Entidade-Relacionamento (MER):
+![mre drawio](https://github.com/user-attachments/assets/0e27a6f4-7b49-4ac3-a7c7-96c42c312de9)
 
 Entidades:
 
