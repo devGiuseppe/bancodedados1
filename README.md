@@ -1,7 +1,7 @@
 # Projeto bancodedados1 Giuseppe Filippo Camardella Barbosa RA: 22121068-5
 Como usar o código para gerar dados aleatórios:
 run gera 5 arquivos csv que usando as queries do outro arquivo você consegue mandar para o banco de dados
-o código foi feito pela biblioteca faker e para alterar as quantidades é só mudar o range dos for.
+o código foi feito pela biblioteca faker e para alterar as quantidades é só mudar o range dos for ou das variáveis num_.
 
 Modelo Entidade-Relacionamento
 Entidades e Atributos:
