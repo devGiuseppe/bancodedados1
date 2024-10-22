@@ -87,5 +87,3 @@ salvar_csv(artistas, ['nome', 'data_nascimento'], 'artistas.csv')
 salvar_csv(discos, ['titulo', 'data_lancamento', 'artista'], 'discos.csv')
 salvar_csv(musicas, ['titulo', 'duracao', 'disco', 'artistas'], 'musicas.csv')
 salvar_csv(playlists, ['titulo', 'usuario', 'musicas'], 'playlists.csv')
-
-print("Dados salvos com sucesso em arquivos CSV!")
