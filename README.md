@@ -88,32 +88,48 @@ Modelo Entidade-Relacionamento (MER):
 Entidades:
 
 Música (id_musica, titulo, duracao, id_disco)
+
 Artista (id_artista, nome, data_nascimento)
+
 Disco (id_disco, titulo, data_lancamento, id_artista)
+
 Usuário (id_usuario, nome, email, data_registro)
+
 Playlist (id_playlist, titulo, id_usuario)
+
 Artista_Musica (id_artista, id_musica)
+
 Música_Playlist (id_playlist, id_musica)
+
 
 Relacionamentos:
 
 Disco contém várias músicas (1
 entre Disco e Música).
+
 Um artista interpreta várias músicas (N
 entre Artista e Música).
+
 Um usuário cria várias playlists (1
 entre Usuário e Playlist).
+
 Uma playlist pode conter várias músicas (N
 entre Playlist e Música).
+
 Diagramas e Cardinalidade:
+
 Disco ↔ Música (1
 )
+
 Artista ↔ Disco (1
 )
+
 Artista ↔ Música (N
 via Artista_Musica)
+
 Usuário ↔ Playlist (1
 )
+
 Playlist ↔ Música (N
 via Música_Playlist)
 
@@ -123,49 +139,72 @@ Tabelas Relacionais na 3FN:
 1. Tabela Musica
 
 Atributos:
+
 id_musica (PK)
 titulo
 duracao
 id_disco (FK)
 Descrição:
+
   Cada música tem um título e duração, e está associada a um disco (chave estrangeira id_disco).
+
 3. Tabela Artista
+
 Atributos:
+
 id_artista (PK)
 nome
 data_nascimento
 Descrição:
+
   Armazena os dados de cada artista.
-4. Tabela Disco
+  
+5. Tabela Disco
+
 Atributos:
+
 id_disco (PK)
 titulo
 data_lancamento
 id_artista (FK)
-Descrição: Cada disco tem um título e data de lançamento, e está associado a um único artista (chave estrangeira id_artista).
-5. Tabela Usuario
+Descrição: 
+Cada disco tem um título e data de lançamento, e está associado a um único artista (chave estrangeira id_artista).
+
+7. Tabela Usuario
+
 Atributos:
+
 id_usuario (PK)
 nome
 email (único)
 data_registro
-Descrição: Armazena informações dos usuários, com um email único para cada usuário.
-6. Tabela Playlist
+Descrição:
+Armazena informações dos usuários, com um email único para cada usuário.
+
+9. Tabela Playlist
+
 Atributos:
+
 id_playlist (PK)
 titulo
 id_usuario (FK)
-Descrição: Cada playlist pertence a um único usuário, identificada por id_usuario.
-7. Tabela Musica_Playlist (Entidade associativa para o relacionamento N
+Descrição:
+Cada playlist pertence a um único usuário, identificada por id_usuario.
+
+11. Tabela Musica_Playlist (Entidade associativa para o relacionamento N
 entre Musica e Playlist)
+
 Atributos:
+
 id_musica (FK)
 id_playlist (FK)
 Descrição:
   Tabela de relacionamento entre músicas e playlists. Uma música pode aparecer em várias playlists e uma playlist pode conter várias músicas.
-9. Tabela Artista_Musica (Entidade associativa para o relacionamento N
+13. Tabela Artista_Musica (Entidade associativa para o relacionamento N
 entre Artista e Musica)
+
 Atributos:
+
 id_artista (FK)
 id_musica (FK)
 Descrição:
