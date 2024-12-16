@@ -1,218 +1,143 @@
-# Projeto bancodedados1 Giuseppe Filippo Camardella Barbosa RA: 22121068-5
-Como usar o código para gerar dados aleatórios:
-run gera 5 arquivos csv que usando as queries do outro arquivo você consegue mandar para o banco de dados
-o código foi feito pela biblioteca faker e para alterar as quantidades é só mudar o range dos for ou das variáveis num_.
+# Projeto Banco de Dados 1  
+**Autor:** Giuseppe Filippo Camardella Barbosa  
+**RA:** 22121068-5  
 
-Modelo Entidade-Relacionamento
-Entidades e Atributos:
+---
 
-Música
+## Como usar o código para gerar dados aleatórios  
 
-Atributos:
-id_musica (chave primária)
-titulo
-duracao (em segundos)
-id_disco (chave estrangeira)
-Cada música pertence a um único disco.
-Artista
+1. Execute o código para gerar **5 arquivos CSV** contendo os dados necessários.  
+2. Utilize as queries disponíveis no outro arquivo para importar os dados para o banco de dados.  
+3. O código utiliza a biblioteca **Faker**:  
+   - Para alterar a quantidade de dados gerados, modifique o `range` nos laços **for** ou ajuste as variáveis prefixadas com `num_`.
 
-Atributos:
-id_artista (chave primária)
-nome
-data_nascimento
-Um artista pode interpretar várias músicas e lançar vários discos.
-Disco
+---
 
-Atributos:
-id_disco (chave primária)
-titulo
-data_lancamento
-id_artista (chave estrangeira)
-Um disco pertence a um único artista e pode conter várias músicas.
-Usuário
+## Modelo Entidade-Relacionamento (MER)  
 
-Atributos:
-id_usuario (chave primária)
-nome
-email (único)
-data_registro
-Um usuário pode criar várias playlists.
-Playlist
+### Entidades e Atributos  
 
-Atributos:
-id_playlist (chave primária)
-titulo
-id_usuario (chave estrangeira)
-Uma playlist é criada por um único usuário e pode conter várias músicas.
-Música_Playlist (Entidade associativa para representar o relacionamento entre músicas e playlists)
+#### **Música**  
+- `id_musica` (chave primária)  
+- `titulo`  
+- `duracao` (em segundos)  
+- `id_disco` (chave estrangeira)  
+  - Cada música pertence a um único disco.  
 
-Atributos:
-id_musica (chave estrangeira)
-id_playlist (chave estrangeira)
-Esta entidade relaciona muitas músicas com muitas playlists.
-Artista_Musica (Entidade associativa para representar o relacionamento entre artistas e músicas)
+#### **Artista**  
+- `id_artista` (chave primária)  
+- `nome`  
+- `data_nascimento`  
+  - Um artista pode interpretar várias músicas e lançar vários discos.  
 
-Atributos:
-id_artista (chave estrangeira)
-id_musica (chave estrangeira)
-Esta entidade relaciona muitos artistas com muitas músicas.
+#### **Disco**  
+- `id_disco` (chave primária)  
+- `titulo`  
+- `data_lancamento`  
+- `id_artista` (chave estrangeira)  
+  - Um disco pertence a um único artista e pode conter várias músicas.  
 
+#### **Usuário**  
+- `id_usuario` (chave primária)  
+- `nome`  
+- `email` (único)  
+- `data_registro`  
+  - Um usuário pode criar várias playlists.  
 
-Relacionamentos:
+#### **Playlist**  
+- `id_playlist` (chave primária)  
+- `titulo`  
+- `id_usuario` (chave estrangeira)  
+  - Uma playlist é criada por um único usuário e pode conter várias músicas.  
 
-Disco → Música (1
-)
+#### **Música_Playlist** (Entidade Associativa)  
+- `id_musica` (chave estrangeira)  
+- `id_playlist` (chave estrangeira)  
+  - Relaciona muitas músicas com muitas playlists.  
 
-Um disco contém várias músicas, mas uma música pertence a um único disco.
-Chave estrangeira: id_disco em Música.
-Artista → Disco (1
-)
+#### **Artista_Musica** (Entidade Associativa)  
+- `id_artista` (chave estrangeira)  
+- `id_musica` (chave estrangeira)  
+  - Relaciona muitos artistas com muitas músicas.  
 
-Um artista pode lançar vários discos, mas um disco pertence a um único artista.
-Chave estrangeira: id_artista em Disco.
-Artista → Música (N
-)
+---
 
-Um artista pode interpretar várias músicas, e uma música pode ser interpretada por vários artistas.
-Entidade associativa: Artista_Musica com chaves estrangeiras id_artista e id_musica.
-Usuário → Playlist (1
-)
+## Relacionamentos  
 
-Um usuário pode criar várias playlists, mas cada playlist pertence a um único usuário.
-Chave estrangeira: id_usuario em Playlist.
-Playlist → Música (N
-)
+- **Disco → Música (1:N)**  
+  Um disco contém várias músicas, mas uma música pertence a um único disco.  
+  - **Chave estrangeira:** `id_disco` em Música.  
 
-Uma playlist pode conter várias músicas, e uma música pode aparecer em várias playlists.
-Entidade associativa: Música_Playlist com chaves estrangeiras id_playlist e id_musica.
+- **Artista → Disco (1:N)**  
+  Um artista pode lançar vários discos, mas um disco pertence a um único artista.  
+  - **Chave estrangeira:** `id_artista` em Disco.  
 
-Modelo Entidade-Relacionamento (MER):
-![mre drawio](https://github.com/user-attachments/assets/0e27a6f4-7b49-4ac3-a7c7-96c42c312de9)
+- **Artista → Música (N:N)**  
+  Um artista pode interpretar várias músicas, e uma música pode ser interpretada por vários artistas.  
+  - **Entidade associativa:** `Artista_Musica`.  
 
-Entidades:
+- **Usuário → Playlist (1:N)**  
+  Um usuário pode criar várias playlists, mas cada playlist pertence a um único usuário.  
+  - **Chave estrangeira:** `id_usuario` em Playlist.  
 
-Música (id_musica, titulo, duracao, id_disco)
+- **Playlist → Música (N:N)**  
+  Uma playlist pode conter várias músicas, e uma música pode aparecer em várias playlists.  
+  - **Entidade associativa:** `Música_Playlist`.  
 
-Artista (id_artista, nome, data_nascimento)
+---
 
-Disco (id_disco, titulo, data_lancamento, id_artista)
+## Modelo Relacional (3FN)  
 
-Usuário (id_usuario, nome, email, data_registro)
+As tabelas seguem a 3ª Forma Normal (3FN):  
 
-Playlist (id_playlist, titulo, id_usuario)
+### **Tabela Música**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_musica    | PK         | Chave Primária |  
+| titulo       | Texto      | -           |  
+| duracao      | Inteiro    | -           |  
+| id_disco     | FK         | Chave Estrangeira |  
 
-Artista_Musica (id_artista, id_musica)
+### **Tabela Artista**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_artista   | PK         | Chave Primária |  
+| nome         | Texto      | -           |  
+| data_nascimento | Data    | -           |  
 
-Música_Playlist (id_playlist, id_musica)
+### **Tabela Disco**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_disco     | PK         | Chave Primária |  
+| titulo       | Texto      | -           |  
+| data_lancamento | Data    | -           |  
+| id_artista   | FK         | Chave Estrangeira |  
 
+### **Tabela Usuário**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_usuario   | PK         | Chave Primária |  
+| nome         | Texto      | -           |  
+| email        | Texto Único| -           |  
+| data_registro | Data      | -           |  
 
-Relacionamentos:
+### **Tabela Playlist**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_playlist  | PK         | Chave Primária |  
+| titulo       | Texto      | -           |  
+| id_usuario   | FK         | Chave Estrangeira |  
 
-Disco contém várias músicas (1
-entre Disco e Música).
+### **Tabela Música_Playlist**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_musica    | FK         | Chave Estrangeira |  
+| id_playlist  | FK         | Chave Estrangeira |  
 
-Um artista interpreta várias músicas (N
-entre Artista e Música).
+### **Tabela Artista_Musica**  
+| Atributo     | Tipo       | Chave       |  
+|--------------|------------|-------------|  
+| id_artista   | FK         | Chave Estrangeira |  
+| id_musica    | FK         | Chave Estrangeira |  
 
-Um usuário cria várias playlists (1
-entre Usuário e Playlist).
-
-Uma playlist pode conter várias músicas (N
-entre Playlist e Música).
-
-Diagramas e Cardinalidade:
-
-Disco ↔ Música (1
-)
-
-Artista ↔ Disco (1
-)
-
-Artista ↔ Música (N
-via Artista_Musica)
-
-Usuário ↔ Playlist (1
-)
-
-Playlist ↔ Música (N
-via Música_Playlist)
-
-
-Tabelas Relacionais na 3FN:
-
-1. Tabela Musica
-
-Atributos:
-
-id_musica (PK)
-titulo
-duracao
-id_disco (FK)
-Descrição:
-
-  Cada música tem um título e duração, e está associada a um disco (chave estrangeira id_disco).
-
-3. Tabela Artista
-
-Atributos:
-
-id_artista (PK)
-nome
-data_nascimento
-Descrição:
-
-  Armazena os dados de cada artista.
-  
-5. Tabela Disco
-
-Atributos:
-
-id_disco (PK)
-titulo
-data_lancamento
-id_artista (FK)
-Descrição: 
-Cada disco tem um título e data de lançamento, e está associado a um único artista (chave estrangeira id_artista).
-
-7. Tabela Usuario
-
-Atributos:
-
-id_usuario (PK)
-nome
-email (único)
-data_registro
-Descrição:
-Armazena informações dos usuários, com um email único para cada usuário.
-
-9. Tabela Playlist
-
-Atributos:
-
-id_playlist (PK)
-titulo
-id_usuario (FK)
-Descrição:
-Cada playlist pertence a um único usuário, identificada por id_usuario.
-
-11. Tabela Musica_Playlist (Entidade associativa para o relacionamento N
-entre Musica e Playlist)
-
-Atributos:
-
-id_musica (FK)
-id_playlist (FK)
-Descrição:
-  Tabela de relacionamento entre músicas e playlists. Uma música pode aparecer em várias playlists e uma playlist pode conter várias músicas.
-13. Tabela Artista_Musica (Entidade associativa para o relacionamento N
-entre Artista e Musica)
-
-Atributos:
-
-id_artista (FK)
-id_musica (FK)
-Descrição:
- Tabela de relacionamento entre artistas e músicas. Um artista pode interpretar várias músicas, e uma música pode ser interpretada por vários artistas.
- ![image](https://github.com/user-attachments/assets/2e1bc17b-d04e-4dcc-acd9-a135060acf1f)
- 
- (é uma imagem gerada mas eu achei que ficou bonito)
+---
