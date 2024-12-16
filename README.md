@@ -141,3 +141,8 @@ As tabelas seguem a 3ª Forma Normal (3FN):
 | id_musica    | FK         | Chave Estrangeira |  
 
 ---
+## Diagrama  
+
+Adicione uma imagem ou um link para visualizar o **Modelo Entidade-Relacionamento**:  
+
+![Diagrama MER](https://github.com/user-attachments/assets/0e27a6f4-7b49-4ac3-a7c7-96c42c312de9)  
